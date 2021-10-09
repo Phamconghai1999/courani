@@ -1,6 +1,7 @@
 import axios from "axios";
 import Vue from "vue";
 import store from "../../store";
+const API_URL = "http://anicorp.tk:5000";
 
 const coursesModule = {
   state: {
@@ -78,15 +79,12 @@ const coursesModule = {
     // call API
     async getCoursesApi({ commit }) {
       try {
-        const response = await axios.get(
-          "https://coursani.herokuapp.com/api/course/",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + store.getters["accessToken"],
-            },
-          }
-        );
+        const response = await axios.get(`${API_URL}/api/course/`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + store.getters["accessToken"],
+          },
+        });
         commit("SET_COURSE", response.data);
       } catch (error) {
         console.log(error);
@@ -97,7 +95,7 @@ const coursesModule = {
         // console.log("token: ", store.getters["accessToken"], newCourse);
         const response = await axios({
           method: "post",
-          url: "https://coursani.herokuapp.com/api/course/create",
+          url: `${API_URL}/api/course/create`,
           data: {
             title: newCourse.Title,
             description: newCourse.Description,
@@ -127,7 +125,7 @@ const coursesModule = {
       try {
         const response = await axios({
           method: "put",
-          url: "https://coursani.herokuapp.com/api/course/" + courseEdit._id,
+          url: `${API_URL}/api/course/${courseEdit._id}`,
           data: {
             title: courseEdit.Title,
             description: courseEdit.Description,
@@ -158,7 +156,7 @@ const coursesModule = {
       try {
         const response = await axios({
           method: "delete",
-          url: "https://coursani.herokuapp.com/api/course/" + courseId,
+          url: `${API_URL}/api/course/` + courseId,
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + store.getters["accessToken"],

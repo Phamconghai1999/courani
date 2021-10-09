@@ -1,5 +1,6 @@
 import axios from "axios";
-const API_URL = "https://coursani.herokuapp.com";
+// const API_URL = "https://coursani.herokuapp.com";
+const API_URL = "http://anicorp.tk:5000";
 
 const authModule = {
   state: {
@@ -58,13 +59,10 @@ const authModule = {
     },
     async registerApi(context, formData) {
       try {
-        const response = await axios.post(
-          "https://coursani.herokuapp.com/api/auth/register",
-          {
-            username: formData.username,
-            password: formData.password,
-          }
-        );
+        const response = await axios.post(`${API_URL}/api/auth/register`, {
+          username: formData.username,
+          password: formData.password,
+        });
         var resData = response.data;
 
         console.log(resData);
