@@ -1,4 +1,5 @@
 import axios from "axios";
+const API_URL = "https://coursani.herokuapp.com";
 
 const authModule = {
   state: {
@@ -28,13 +29,11 @@ const authModule = {
   actions: {
     async loginApi({ commit }, formData) {
       try {
-        const response = await axios.post(
-          "https://coursani.herokuapp.com/api/auth/login",
-          {
-            username: formData.username,
-            password: formData.password,
-          }
-        );
+        console.log(API_URL);
+        const response = await axios.post(`${API_URL}/api/auth/login`, {
+          username: formData.username,
+          password: formData.password,
+        });
         var resData = response.data;
 
         // console.log(resData);
