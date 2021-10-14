@@ -1,7 +1,8 @@
 import axios from "axios";
 import Vue from "vue";
 import store from "../../store";
-const API_URL = "http://anicorp.tk:5000";
+// const API_URL = "http://anicorp.tk:5000";
+const API_URL = "https://coursani.herokuapp.com";
 
 const coursesModule = {
   state: {
